@@ -1,0 +1,111 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{checksum "yarn.lock"}}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run:
+          name: Nodejs Version
+          command: node --version
+
+      - run:
+          name: Install Packages
+          command: yarn install
+
+      - run:
+          name: Test Packages
+          command: yarn run coverage
+
+      - save_cache:
+          name: Save node_modules cache
+          paths:
+            - node_modules
+          key: v1-dependencies-{{checksum "yarn.lock"}}
+
+
+# version: 2
+# jobs:
+#   test-8: &test-template
+#     docker:
+#       - image: circleci/node:8
+#     working_directory: ~/repo
+#     steps:
+#       - checkout
+#       - restore_cache:
+#         keys:
+#         - v1-dependencies-{{checksum "yarn.lock"}}
+#         # fallback to using the latest cache if no exact match is found
+#         - v1-dependencies-
+#       - run:
+#         name: node version
+#         command: node --version
+#       - run:
+#         name: install packages
+#         command: yarn
+#       - run:
+#         name: test package and generate coverage
+#         command: yarn coverage
+#       - save_cache:
+#         name: save node_modules cache
+#         paths:
+#           - node_modules
+#         key: v1-dependencies-{{checksum "yarn.lock"}}
+
+#   test-6:
+#     <<: *test-template
+#     docker:
+#       - image: circleci/node:6
+#   test-10:
+#     <<: *test-template
+#     docker:
+#       - image: circleci/node:10
+
+#   publish:
+#     docker:
+#       - image: circleci/node:8
+#     working_directory: ~/repo
+#     steps:
+#       - checkout
+#       - run:
+#         name: node version
+#         command: node --version
+#       - run:
+#         name: install packages
+#         command: yarn
+#       - run:
+#         name: build package
+#         command: yarn build
+#       - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
+#       - run: npm publish
+
+# workflows:
+#   version: 2
+#   test:
+#     jobs:
+#       - test-6
+#       - test-8
+#       - test-10
+#   deploy:
+#       jobs:
+#         - test-6
+#         - test-8
+#         - test-10
+#         - publish
+#           requires:
+#             - test-6
+#             - test-8
+#             - test-10
+#           filters:
+#             tags:
+#               only: /v[0-9]+(\.[0-9]+)*/

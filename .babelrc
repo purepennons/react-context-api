@@ -1,0 +1,24 @@
+{
+  "env": {
+    "test": {
+      "presets": [
+        ["env", { "modules": "commonjs" }]
+      ]
+    },
+    "development": {
+      "plugins": ["external-helpers"]
+    },
+    "production": {
+      "plugins": ["external-helpers"]
+    }
+  },
+  "presets": [
+    [
+      "env",
+      {
+        "modules": false
+      }
+    ]
+  ],
+  "plugins": []
+}
