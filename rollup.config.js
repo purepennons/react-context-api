@@ -1,9 +1,27 @@
-import babel from 'rollup-plugin-babel';
-import commonjs from 'rollup-plugin-commonjs';
-import external from 'rollup-plugin-peer-deps-external';
-import resolve from 'rollup-plugin-node-resolve';
+
+import babel from 'rollup-plugin-babel'
+import commonjs from 'rollup-plugin-commonjs'
+import external from 'rollup-plugin-peer-deps-external'
+import postcss from 'rollup-plugin-postcss'
+import resolve from 'rollup-plugin-node-resolve'
+import url from 'rollup-plugin-url'
+
 
 import pkg from './package.json';
+
+const plugins = [
+  external(),
+  postcss({
+    modules: true
+  }),
+  url(),
+  babel({
+    exclude: 'node_modules/**',
+    plugins: ['external-helpers']
+  }),
+  resolve(),
+  commonjs()
+]
 
 export default [
   {
@@ -13,15 +31,7 @@ export default [
       file: pkg.browser,
       format: 'umd'
     },
-    plugins: [
-      external(),
-      babel({
-        exclude: 'node_modules/**',
-        plugins: ['external-helpers']
-      }),
-      resolve(),
-      commonjs()
-    ]
+    plugins: plugins
   },
   {
     input: 'src/index.js',
@@ -35,14 +45,6 @@ export default [
         format: 'es'
       }
     ],
-    plugins: [
-      external(),
-      babel({
-        exclude: 'node_modules/**',
-        plugins: ['external-helpers']
-      }),
-      resolve(),
-      commonjs()
-    ]
+    plugins: plugins
   }
 ];

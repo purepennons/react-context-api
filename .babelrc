@@ -18,7 +18,8 @@
       {
         "modules": false
       }
-    ]
+    ],
+    "react"
   ],
   "plugins": []
 }

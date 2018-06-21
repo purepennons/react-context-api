@@ -1,38 +1,42 @@
-export function getVariablesArray(str) {
-  if (!_.isString(str)) return false
-  return str.match(/\{[A-Za-z_][A-Za-z0-9_]*\}/gm)
-}
+// Any sub store defeined in the `context` folder
+// can be merged and injected as a global store
+// by `withContext` API.
 
-export function isValidParanthesesPairs(str) {
-  if (!_.isString(str)) return false
-  const result = str.match(/\{|\}/gm).reduce(
-    (acc, v, idx, arr) => {
-      if (acc.done) return acc
+import React, { Component } from 'react'
+import { adopt } from 'react-adopt'
 
-      switch (v) {
-        case '{':
-          if (acc.prev !== '' || idx === arr.length - 1) {
-            acc.result = false
-            acc.done = true
-          }
-          acc.prev = '{'
-          break
-        case '}':
-          if (acc.prev !== '{') {
-            acc.result = false
-            acc.done = true
-          }
-          acc.prev = ''
-          break
-        default:
-          acc.result = false
-          acc.done = true
+import todos from './todos'
+
+// Register all sub stores in the `context` variable.
+export const context = { todos }
+
+// If yout want to get all store, use `ContextConsumer` API instead.
+// e.g. <ContextConsumer>{allStore => {}}</ContextConsumer>
+export const ContextConsumer = adopt(
+  Object.keys(context).reduce((acc, cxKey) => {
+    const C = context[cxKey].Consumer
+    acc[cxKey] = <C />
+    return acc
+  }, {})
+)
+
+// `withContext` is a high-order-component that can pass
+// all store states in to a component and accessed by
+// store consumer.
+export function withContext(Base) {
+  const WrappedComponent = Object.values(context).reduce((HOC, cx) => {
+    class Context extends Component {
+      render() {
+        return (
+          <cx.Provider>
+            <HOC {...this.props} />
+          </cx.Provider>
+        )
       }
+    }
+    return Context
+  }, Base)
 
-      return acc
-    },
-    { prev: '', result: true, done: false },
-  )
-
-  return result.result
+  WrappedComponent.displayName = `ContextProvider`
+  return WrappedComponent
 }
