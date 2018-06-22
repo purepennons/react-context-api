@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": false,
+    "declaration": true,
+    "experimentalDecorators": false,
+    "jsx": "react",
+    "lib": ["es2018", "dom"],
+    "module": "es2015",
+    "moduleResolution": "node",
+    "pretty": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "noUnusedParameters": false,
+    "noUnusedLocals": true,
+    "skipLibCheck": true,
+    "target": "es6"
+  },
+  "include": ["./typings/**/*", "./src/**/*", "./test/**/*"],
+  "exclude": ["./node_modules", "./dist", "./lib"]
+}

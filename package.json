@@ -10,7 +10,8 @@
     "test:watch": "BABLE_ENV=test jest --watch",
     "test:cov": "BABEL_ENV=test jest --coverage",
     "coverage": "BABEL_ENV=test jest --coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
-    "prepublish": "npm run test && npm run build"
+    "prepublish": "npm run test && npm run build",
+    "precommit": "lint-staged"
   },
   "main": "dist/main.cjs.js",
   "module": "dist/main.esm.js",
@@ -33,14 +34,18 @@
   },
   "homepage": "https://github.com/purepennons/react-context-api#readme",
   "devDependencies": {
+    "@types/jest": "^23.1.1",
     "babel-core": "^6.26.3",
     "babel-jest": "^23.0.1",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "coveralls": "^3.0.1",
+    "husky": "^0.14.3",
     "jest": "^23.1.0",
     "jest-cli": "^23.1.0",
+    "lint-staged": "^7.2.0",
+    "prettier": "^1.13.5",
     "regenerator-runtime": "^0.11.1",
     "rollup": "^0.60.7",
     "rollup-plugin-babel": "^3.0.4",
@@ -48,13 +53,23 @@
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-peer-deps-external": "^2.1.1",
     "rollup-plugin-postcss": "^1.6.2",
-    "rollup-plugin-url": "^1.4.0"
+    "rollup-plugin-typescript2": "^0.15.0",
+    "rollup-plugin-url": "^1.4.0",
+    "ts-jest": "^22.4.6",
+    "typescript": "^2.9.2",
+    "typings": "^2.1.1"
+  },
+  "lint-staged": {
+    "linters": {
+      "src/**/*.{js,jsx,ts,tsx,css,scss}": [
+        "prettier --write",
+        "git add"
+      ]
+    }
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/scripts/jest.setup.js",
-    "testMatch": [
-      "<rootDir>/__test__/*.spec.{js,jsx}"
-    ],
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "collectCoverageFrom": [
       "src/**/*.js"
     ],
@@ -64,12 +79,23 @@
       "lcov"
     ],
     "transform": {
-      "^.+\\.jsx$": "babel-jest",
-      "^.+\\.js$": "babel-jest"
-    }
+      "^.+\\.jsx?$": "babel-jest",
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   },
   "peerDependencies": {
-    "react": "^16.4.1",
-    "react-dom": "^16.4.1"
+    "react": ">=16.3",
+    "react-dom": ">=16.3"
+  },
+  "dependencies": {
+    "react-adopt": "^0.6.0"
   }
 }
