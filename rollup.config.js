@@ -24,7 +24,7 @@ const plugins = [
 
 export default [
   {
-    input: 'src/index.ts',
+    input: 'src/index.tsx',
     output: {
       name: 'reactContextAPIUtils',
       file: pkg.browser,
@@ -33,7 +33,7 @@ export default [
     plugins: plugins
   },
   {
-    input: 'src/index.ts',
+    input: 'src/index.tsx',
     output: [
       {
         file: pkg.main,

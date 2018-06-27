@@ -13,21 +13,17 @@ interface Props {
   [k: string]: any;
 }
 
-interface State {
-  [k: string]: any;
-}
-
 export interface ContextType<T> {
   Provider: React.ComponentType;
   Consumer: React.Consumer<T>;
 }
 
-export interface DefaultContextType {
+export interface DefaultContextValueType {
   [k: string]: any;
 }
 
 export interface ContextListType {
-  [k: string]: ContextType<DefaultContextType>;
+  [k: string]: ContextType<DefaultContextValueType>;
 }
 
 export interface ContextAPIProviderProps {
@@ -64,7 +60,7 @@ export default function createContextAPI(
   > {
     render(): JSX.Element {
       return Object.values(contextList).reduce(
-        (Parent: JSX.Element, cx: ContextType<DefaultContextType>) => (
+        (Parent: JSX.Element, cx: ContextType<DefaultContextValueType>) => (
           <cx.Provider>
             {React.cloneElement(Parent, {
               ...this.props

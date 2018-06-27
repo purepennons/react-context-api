@@ -79,7 +79,7 @@
     "setupTestFrameworkScriptFile": "<rootDir>/scripts/jest.setup.js",
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
     "collectCoverageFrom": [
-      "src/**/*.js"
+      "src/**/*.{js,jsx,ts,tsx}"
     ],
     "coverageDirectory": "coverage",
     "coverageReporters": [
