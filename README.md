@@ -9,12 +9,6 @@
       src="https://badge.fury.io/js/react-context-api.svg"
     />
   </a>
-  <a href="https://circleci.com/gh/purepennons/react-context-api/tree/master">
-    <img
-      alt="circle ci"
-      src="https://circleci.com/gh/purepennons/react-context-api/tree/master.svg?style=svg"
-    />
-  </a>
   <a href="https://coveralls.io/github/purepennons/react-context-api?branch=master">
     <img src="https://coveralls.io/repos/github/purepennons/react-context-api/badge.svg?branch=master" alt="Coverage Status" />
   </a>
@@ -22,6 +16,12 @@
     <img
       alt="license mit"
       src="https://img.shields.io/badge/License-MIT-blue.svg"
+    />
+  </a>
+  <a href="https://circleci.com/gh/purepennons/react-context-api/tree/master">
+    <img
+      alt="circle ci"
+      src="https://circleci.com/gh/purepennons/react-context-api/tree/master.svg?style=svg"
     />
   </a>
 </p>
