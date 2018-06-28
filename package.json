@@ -1,6 +1,6 @@
 {
   "name": "react-context-api",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "react 16.3 context api utils",
   "scripts": {
     "build": "BABEL_ENV=production rollup -c",
