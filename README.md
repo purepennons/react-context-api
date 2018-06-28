@@ -35,7 +35,7 @@ It is good to define by features.
 
 ```jsx
 // todos.jsx
-import { createContext, Component } from 'react
+import { createContext, Component } from 'react'
 const cx = createContext({});
 class Provider extends Component {
   constructor(props) {
@@ -65,7 +65,7 @@ export default {
 };
 
 // other.jsx
-import { createContext, Component } from 'react
+import { createContext, Component } from 'react'
 const cx = createContext({});
 class Provider extends Component {
   constructor(props) {
@@ -154,7 +154,7 @@ const App = withContextProvider(Child);
 ### createContextAPI(contextList: Object) => ({ContextProvider, ContextConsumer, withContextProvider, withContextConsumer, getContextConsumer})
 `contextList` must be a object which value is a context pair (`{ Provider, Consumer }`):
 ```jsx
-import { createContext, Component } from 'react
+import { createContext, Component } from 'react'
 const cx = createContext({});
 class Provider extends Component {
   constructor(props) {
