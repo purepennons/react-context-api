@@ -2,6 +2,30 @@
 
 > !!!The library is not stable now!!!
 
+<p>
+  <a href="https://www.npmjs.com/package/react-context-api">
+    <img
+      alt="npm version"
+      src="https://badge.fury.io/js/react-context-api.svg"
+    />
+  </a>
+  <a href="https://circleci.com/gh/purepennons/react-context-api/tree/master">
+    <img
+      alt="circle ci"
+      src="https://circleci.com/gh/purepennons/react-context-api/tree/master.svg?style=svg"
+    />
+  </a>
+  <a href="https://coveralls.io/github/purepennons/react-context-api?branch=master">
+    <img src="https://coveralls.io/repos/github/purepennons/react-context-api/badge.svg?branch=master" alt="Coverage Status" />
+  </a>
+  <a href="https://github.com/purepennons/react-context-api/blob/master/LICENSE">
+    <img
+      alt="license mit"
+      src="https://img.shields.io/badge/License-MIT-blue.svg"
+    />
+  </a>
+</p>
+
 This is a React 16.3 [context api](https://reactjs.org/docs/context.html) wrapper. The purpose of the library is giving a convenience way to use `Context API` as a react global store.
 
 ## Basic Usage
